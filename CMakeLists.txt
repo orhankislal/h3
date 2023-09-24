@@ -94,13 +94,13 @@ if(NOT WIN32)
     # are not correct for MSVC.
     list(APPEND H3_COMPILE_FLAGS -Wall)
 
-    list(APPEND H3_COMPILE_FLAGS $<$<CONFIG:Debug>:-gdwarf-2 -g3 -O0 -fno-inline -fno-eliminate-unused-debug-types>)
+    list(APPEND H3_COMPILE_FLAGS -gdwarf-2 -g3 -O0 -fno-inline -fno-eliminate-unused-debug-types)
 
     if(ENABLE_COVERAGE)
-        list(APPEND H3_COMPILE_FLAGS $<$<CONFIG:Debug>:--coverage>)
+        list(APPEND H3_COMPILE_FLAGS --coverage)
         # --coverage is not passed to the linker, so this option is needed
         # to fully enable coverage.
-        list(APPEND H3_LINK_FLAGS $<$<CONFIG:Debug>:--coverage>)
+        list(APPEND H3_LINK_FLAGS --coverage)
     endif()
     if(ENABLE_LIBFUZZER)
         list(APPEND H3_COMPILE_FLAGS -fsanitize=fuzzer,address,undefined)
